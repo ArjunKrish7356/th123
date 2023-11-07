@@ -1,7 +1,7 @@
 import speech_recognition as sr
 import pyaudio
 import wave
-
+from gtts import gTTS
 def record_audio(output_file, duration=5, sample_rate=44100, channels=2, chunk_size=1024):
     p = pyaudio.PyAudio()
 
@@ -71,7 +71,6 @@ translated_text = translate_text(text_to_translate, target_language="en")
 print(f"Original Text: {text_to_translate}")
 print(f"Translated Text: {translated_text}")
 
-
-from gtts import gTTS
-tts = gTTS(text=text_to_translate, lang='ml')
-tts.save('output3.mp3')
+def speech_to_text():
+    tts = gTTS(text=text_to_translate, lang='ml')
+    tts.save('output3.mp3')
