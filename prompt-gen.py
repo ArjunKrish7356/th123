@@ -1,7 +1,6 @@
-import speech_recognition as sr
 import pyaudio
 import wave
-from gtts import gTTS
+
 def record_audio(output_file, duration=5, sample_rate=44100, channels=2, chunk_size=1024):
     p = pyaudio.PyAudio()
 
@@ -34,7 +33,7 @@ def record_audio(output_file, duration=5, sample_rate=44100, channels=2, chunk_s
 output_file = r"C:\Users\adith\Downloads\test-path\test1.wav"
 record_audio(output_file, duration=10)
 
-
+import speech_recognition as sr
 
 def transcribe_speech(audio_file_path):
     recognizer = sr.Recognizer()
@@ -58,19 +57,22 @@ transcribed_text = transcribe_speech(audio_file_path)
 print("Transcribed Text:", transcribed_text)
 
 
-from googletrans import Translator
+from mtranslate import translate
 
-def translate_text(text, target_language="en"):
-    translator = Translator()
-    translation = translator.translate(text, dest=target_language)
-    return translation.text
+def translate_text(text, target_language='en'):
+    translation = translate(text, target_language)
+    return translation
 
 # Example usage
-text_to_translate =transcribed_text
-translated_text = translate_text(text_to_translate, target_language="en")
-print(f"Original Text: {text_to_translate}")
-print(f"Translated Text: {translated_text}")
+malayalam_text = transcribed_text
+english_translation = translate_text(malayalam_text, target_language='en')
 
-def speech_to_text():
-    tts = gTTS(text=text_to_translate, lang='ml')
-    tts.save('output3.mp3')
+print(f"Malayalam: {malayalam_text}")
+print(f"English: {english_translation}")
+
+
+from gtts import gTTS
+tts = gTTS(text=transcribed_text, lang='ml')
+tts.save('output3.mp3')
+
+
