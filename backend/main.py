@@ -41,7 +41,7 @@ async def translate(file: UploadFile = File(...)):
     # Save the file in the backend
     file_location = f"temp.{file.filename.split('.')[-1]}"
     with open(file_location, "wb+") as dest_file:
-        shutil.copyfileobj(file.file, dest_file)
+        shutil.copyfileobj(file.file, dest_file ) 
     
     # Example usage
     mp3_file_path = r"c:\Users\91735\Desktop\projects\th-project\backend\temp.webm"
